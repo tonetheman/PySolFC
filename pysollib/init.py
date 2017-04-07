@@ -61,13 +61,13 @@ def init():
     ## debug
     if 'PYSOL_CHECK_GAMES' in os.environ or 'PYSOL_DEBUG' in os.environ:
         pysollib.settings.CHECK_GAMES = True
-        print 'PySol debugging: set CHECK_GAMES to True'
+        print('PySol debugging: set CHECK_GAMES to True')
     if 'PYSOL_DEBUG' in os.environ:
         try:
             pysollib.settings.DEBUG = int(os.environ['PYSOL_DEBUG'])
         except:
             pysollib.settings.DEBUG = 1
-        print 'PySol debugging: set DEBUG to', pysollib.settings.DEBUG
+        print('PySol debugging: set DEBUG to', pysollib.settings.DEBUG)
 
     ## init toolkit
     if '--gtk' in sys.argv:
@@ -82,7 +82,7 @@ def init():
         pysollib.settings.USE_TILE = True
         sys.argv.remove('--tile')
     if pysollib.settings.TOOLKIT == 'tk':
-        import Tkinter
+        import tkinter as Tkinter
         root = Tkinter.Tk(className=pysollib.settings.TITLE)
         root.withdraw()
         if Tkinter.TkVersion < 8.4:
@@ -142,4 +142,3 @@ def init():
     if '--no-games-menu' in sys.argv:
         sys.argv.remove('--no-games-menu')
         pysollib.settings.SELECT_GAME_MENU = False
-

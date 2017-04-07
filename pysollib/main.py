@@ -28,7 +28,7 @@ import traceback
 import getopt
 
 # PySol imports
-from pysollib.mygettext import _, n_
+from pysollib.mygettext import _ as a_, n_
 from pysollib.util import DataLoader
 from pysollib.mfxutil import print_err
 from pysollib.resource import Tile
@@ -52,15 +52,15 @@ from pysollib.pysoltk import PysolProgressBar
 
 def fatal_no_cardsets(app):
     app.wm_withdraw()
-    d = MfxMessageDialog(app.top, title=_("%s installation error") % TITLE,
-                         text=_('''No cardsets were found !!!
+    d = MfxMessageDialog(app.top, title=a_("%s installation error") % TITLE,
+                         text=a_('''No cardsets were found !!!
 
 Main data directory is:
 %s
 
 Please check your %s installation.
 ''') % (app.dataloader.dir, TITLE),
-                         bitmap="error", strings=(_("&Quit"),))
+                         bitmap="error", strings=(a_("&Quit"),))
 
 
 # ************************************************************************
@@ -77,8 +77,8 @@ def parse_option(argv):
                                        "nosound",
                                        "sound-mod=",
                                        "help"])
-    except getopt.GetoptError, err:
-        print_err(_("%s\ntry %s --help for more information") %
+    except getopt.GetoptError as err:
+        print_err(a_("%s\ntry %s --help for more information") %
                   (err, prog_name), 0)
         return None
     opts = {"help"        : False,
@@ -107,7 +107,7 @@ def parse_option(argv):
             opts["sound-mod"] = i[1]
 
     if opts["help"]:
-        print _("""Usage: %s [OPTIONS] [FILE]
+        print( a_("""Usage: %s [OPTIONS] [FILE]
   -g    --game=GAMENAME        start game GAMENAME
   -i    --gameid=GAMEID
         --french-only
@@ -118,18 +118,18 @@ def parse_option(argv):
 
   FILE - file name of a saved game
   MOD - one of following: pss(default), pygame, oss, win
-""") % prog_name
+""") % prog_name )
         return None
 
     if len(args) > 1:
         print_err(
-            _("too many files\ntry %s --help for more information") %
+            a_("too many files\ntry %s --help for more information") %
             prog_name, 0)
         return None
     filename = args and args[0] or None
     if filename and not os.path.isfile(filename):
         print_err(
-            _("invalid file name\ntry %s --help for more information") %
+            a_("invalid file name\ntry %s --help for more information") %
             prog_name, 0)
         return None
     return opts, filename
@@ -153,7 +153,7 @@ def pysol_init(app, args):
         try:
             app.commandline.gameid = int(opts['gameid'])
         except ValueError:
-            print_err(_('invalid game id: ') + opts['gameid'])
+            print_err(a_('invalid game id: ') + opts['gameid'])
 
     # try to create the config directory
     for d in (
@@ -201,7 +201,7 @@ def pysol_init(app, args):
     app.wm_withdraw()
 
     # create the progress bar
-    title = _("Welcome to %s") % TITLE
+    title = a_("Welcome to %s") % TITLE
     color = app.opt.colors['table']
     if app.tabletile_index > 0:
         color = "#008200"
@@ -273,14 +273,14 @@ def pysol_init(app, args):
         app.wm_withdraw()
         app.intro.progress.destroy()
         d = MfxMessageDialog(top, title=_("%s installation error") % TITLE,
-                             text=_('''
+                             text=a_('''
 No games were found !!!
 
 Main data directory is:
 %s
 
 Please check your %s installation.
-''') % (app.dataloader.dir, TITLE), bitmap="error", strings=(_("&Quit"),))
+''') % (app.dataloader.dir, TITLE), bitmap="error", strings=(a_("&Quit"),))
         return 1
 
     # init cardsets
