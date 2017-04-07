@@ -29,8 +29,8 @@ __all__ = ['MfxCanvasGroup',
            'MfxCanvas']
 
 # imports
-import Tkinter
-import Canvas
+import tkinter as Tkinter
+import tkinter.canvas as Canvas
 
 # PySol imports
 from pysollib.mfxutil import Image, ImageTk
@@ -401,4 +401,3 @@ class MfxCanvas(Tkinter.Canvas):
         except ValueError:
             e.y = args[1]
         return (e,)
-

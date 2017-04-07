@@ -892,7 +892,8 @@ class Application:
             self.subsampled_images = simages
             self.updateCardset(id, update=update)
             r = 1
-        except (Exception, TclError, UnpicklingError), ex:
+        except Exception as ex:
+            #except (Exception, TclError, UnpicklingError), ex:
             traceback.print_exc()
             cs.error = 1
             # restore settings
@@ -1266,7 +1267,7 @@ Please select a %s type %s.
             if m and os.path.isfile(n):
                 try:
                     loadGame(m.group(1), n)
-                except Exception, ex:
+                except Exception as ex:
                     if DEBUG:
                         traceback.print_exc()
                     print_err(_("error loading plugin %s: %s") % (n, ex))
@@ -1439,10 +1440,10 @@ Please select a %s type %s.
                                 print_err('fail _readCardsetConfig: %s %s'
                                           % (d, f1))
                                 pass
-                        except Exception, err:
+                        except Exception as err:
                             ##traceback.print_exc()
                             pass
-            except EnvironmentError, ex:
+            except EnvironmentError as ex:
                 pass
         # register cardsets
         for obj in found:
@@ -1493,7 +1494,7 @@ Please select a %s type %s.
                     if key not in t:
                         t[key] = 1
                         found.append((n, tile))
-            except EnvironmentError, ex:
+            except EnvironmentError as ex:
                 pass
         # register tiles
         found.sort()
@@ -1534,7 +1535,7 @@ Please select a %s type %s.
                     if key not in t:
                         t[key] = 1
                         found.append((n, obj))
-            except EnvironmentError, ex:
+            except EnvironmentError as ex:
                 pass
         # register songs
         found.sort()
@@ -1562,5 +1563,3 @@ Please select a %s type %s.
         ##print dirs
         ext_re = re.compile(self.audio.EXTENSIONS)
         self.initResource(manager, dirs, ext_re, Music)
-
-

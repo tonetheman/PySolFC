@@ -118,7 +118,7 @@ class ResourceManager:
                 dir = os.path.normpath(dir)
                 if dir and os.path.isdir(dir) and dir not in result:
                     result.append(dir)
-        except EnvironmentError, ex:
+        except EnvironmentError as ex:
             pass
 
     def getSearchDirs(self, app, search, env=None):
@@ -145,11 +145,11 @@ class ResourceManager:
                             self._addDir(result, d)
                     else:
                         self._addDir(result, os.path.join(dir, s))
-                except EnvironmentError, ex:
+                except EnvironmentError as  ex:
                     traceback.print_exc()
                     pass
         if DEBUG >= 6:
-            print "getSearchDirs", env, search, "->", result
+            print("getSearchDirs", env, search, "->", result)
         return result
 
 
@@ -385,7 +385,7 @@ class Cardset(Resource):
         self.backname = self.backnames[self.backindex]
 
     def saveSettings(self):
-        print 'saveSettings'
+        print('saveSettings')
 
 
 class CardsetManager(ResourceManager):
@@ -535,4 +535,3 @@ class Music(Sample):
 
 class MusicManager(SampleManager):
     pass
-

@@ -47,8 +47,10 @@ __all__ = ['wm_withdraw',
 
 # imports
 import re
-import Tkinter
-from tkFont import Font
+import tkinter as Tkinter
+# from tkFont import Font
+from tkinter import font
+tkFont = font
 
 # PySol imports
 from pysollib.mfxutil import Image, ImageTk, ImageOps
@@ -411,4 +413,3 @@ def resizeBottom(image, maskimage, color='white', backfile=None):
 
 def get_text_width(text, font, root=None):
     return Font(root=root, font=font).measure(text)
-

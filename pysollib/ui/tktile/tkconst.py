@@ -39,7 +39,7 @@ __all__ = ['EVENT_HANDLED',
            ]
 
 # imports
-import Tkinter
+import tkinter as Tkinter
 
 from pysollib.mygettext import _, n_
 
@@ -89,4 +89,3 @@ TOOLBAR_BUTTONS = (
     "quit",
     "player",
     )
-

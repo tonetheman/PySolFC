@@ -424,7 +424,7 @@ class Images:
         self._pil_shadow = {}
 
     def reset(self):
-        print 'Image.reset'
+        print('Image.reset')
         self.resize(1, 1)
 
 
@@ -466,4 +466,3 @@ class SubsampledImages(Images):
             else:
                 s.append(im.subsample(r))
         return s
-
